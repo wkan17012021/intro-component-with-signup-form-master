@@ -16,7 +16,7 @@
       sizes="32x32"
       href="./images/favicon-32x32.png"
     />
-
+    <script src="./validateForm.js" defer></script>
     <title>Frontend Mentor | Intro component with sign up form</title>
   </head>
   <body>
@@ -55,7 +55,6 @@
           type="text"
           name="last-name"
           id="last-name"
-          pattern="[a-zA-Z]"
           placeholder="Last Name"
         />
         <span class="error-message"></span>
@@ -73,7 +72,6 @@
           type="email"
           name="email"
           id="email"
-          pattern="[a-zA-Z]"
           placeholder="Email Address"
         />
         <span class="error-message"></span>
@@ -91,7 +89,6 @@
           type="text"
           name="password"
           id="password"
-          pattern="[a-zA-Z]"
           placeholder="Password"
         />
         <span class="error-message"></span>
@@ -106,10 +103,10 @@
         </div>
         <input
         id="submit-btn"
+        class="submit-btn"
           aria-label="Click this submit element to claim your free trial"
           type="submit"
           value="CLAIM YOUR FREE TRIAL"
-          disabled
         />
         <p class="terms">
           By clicking the button, you are agreeing to our
@@ -117,6 +114,6 @@
         </p>
       </form>
     </main>
-    <script src="./validateForm.js"></script>
+    
   </body>
 </html>
