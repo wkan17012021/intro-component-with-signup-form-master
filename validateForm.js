@@ -12,27 +12,36 @@ form.addEventListener("submit", (event) => {
   validateInputs();
 });
 
+// logic for error visuals
 const setError = (element, message) => {
-  const inputControl = element.parentElement;
-//   console.log(inputControl.children);
-  inputControl.children[0].style.boxShadow = '0 0 5px 1px maroon'; 
-    inputControl.children[2].style.visibility = 'visible';
-    console.log(inputControl.children[2]);
+  const inputControl = element.parentElement; // grab parent element
+  //   console.log(inputControl.children);use to identify children elements
+  // console.log(inputControl.children[2]);
+  inputControl.children[0].style.boxShadow = "0 0 5px 1px maroon";
+  inputControl.children[2].style.visibility = "visible";
+
   const errorDisplay = inputControl.querySelector(".error-message");
-  errorDisplay.innerText = message;
-  inputControl.classList.remove("success");
-  inputControl.classList.add('error');
+  errorDisplay.innerText = message; // set the empty span with class of error-message innerText
+  inputControl.classList.remove("success"); // toggle the correct and error classes
+  inputControl.classList.add("error");
 };
 
+// logic for successful user input
 const setSuccess = (element) => {
   const inputControl = element.parentElement;
- 
   const errorDisplay = form.querySelector(".error-message");
   errorDisplay.innerText = "";
   inputControl.classList.remove("error");
-   inputControl.children[0].classList.add("success");
-
+  inputControl.children[0].classList.add("success");
+  inputControl.children[0].value = "";
 };
+
+// validate email
+const isValidEmail = email => {
+const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+return mailformat.test(String(email).toLowerCase());
+}
+
 
 // function to run on all input values submitted
 const validateInputs = () => {
@@ -55,13 +64,19 @@ const validateInputs = () => {
     setSuccess(lastName);
   }
   if (emailValue === "") {
+    setError(email, "Email address cannot be empty");
+  } 
+  else if (!isValidEmail(emailValue)) {
     setError(email, "Looks like this is not an email");
   } else {
     setSuccess(email);
   }
   if (passwordValue === "") {
     setError(password, "Password cannot be empty");
-  } else {
+  } else if (passwordValue.length < 8) {
+    setError(password, "Password must be greater than 8 characters");
+  }
+  else {
     setSuccess(password);
   }
 };
