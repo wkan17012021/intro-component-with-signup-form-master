@@ -13,20 +13,25 @@ form.addEventListener("submit", (event) => {
 });
 
 const setError = (element, message) => {
-  const inputControl = element;
-  console.log(inputControl);
-  const errorDisplay = form.querySelector(".error-message");
+  const inputControl = element.parentElement;
+//   console.log(inputControl.children);
+  inputControl.children[0].style.boxShadow = '0 0 5px 1px maroon'; 
+    inputControl.children[2].style.visibility = 'visible';
+    console.log(inputControl.children[2]);
+  const errorDisplay = inputControl.querySelector(".error-message");
   errorDisplay.innerText = message;
   inputControl.classList.remove("success");
-  inputControl.classList.add(`error`);
+  inputControl.classList.add('error');
 };
 
 const setSuccess = (element) => {
-  const inputControl = element;
+  const inputControl = element.parentElement;
+ 
   const errorDisplay = form.querySelector(".error-message");
   errorDisplay.innerText = "";
   inputControl.classList.remove("error");
-  inputControl.classList.add("success");
+   inputControl.children[0].classList.add("success");
+
 };
 
 // function to run on all input values submitted
@@ -48,5 +53,15 @@ const validateInputs = () => {
     setError(lastName, "Last Name cannot be empty");
   } else {
     setSuccess(lastName);
+  }
+  if (emailValue === "") {
+    setError(email, "Looks like this is not an email");
+  } else {
+    setSuccess(email);
+  }
+  if (passwordValue === "") {
+    setError(password, "Password cannot be empty");
+  } else {
+    setSuccess(password);
   }
 };

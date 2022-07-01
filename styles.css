@@ -233,15 +233,20 @@ form {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 10px;
   position: relative;
 }
-
-form > input {
-  border-radius: 5px;
+.input-control {
   width: 90%;
+  margin-top: 1rem;
+  position: relative;
+}
+
+ input {
+  border-radius: 5px;
+  width: 100%;
   padding: 1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
   position: relative;
   cursor: pointer;
+  margin-bottom: 0.75rem;
 }
 
 .submit-btn {
@@ -251,13 +256,20 @@ form > input {
   letter-spacing: 2px;
   font-size: 1rem;
   font-weight: 500;
+  width: 90%;
+  margin-top: 1rem;
 }
 
 .error-icon-wrapper {
-  position: relative;
-  left: 35%;
-  top: -3.5rem;
+  position: absolute;
+  right: 10%;
+  top: 20%;
+  visibility: hidden;
 }
+
+/* .error-message {
+  font-style: italic;
+} */
 
 .terms {
   text-align: center;
@@ -278,7 +290,7 @@ form > input {
   body {
     background: url(./images/bg-intro-desktop.png);
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-color: hsl(0, 100%, 74%);
   }
   .card-wrapper {
@@ -304,13 +316,14 @@ form > input {
 
 /* form validation styling */
 .error {
-  box-shadow: 0 0 5px 1px maroon;
+  color:red;
   font-style: italic;
+  text-align: end;
 }
 
 .success {
   background: hsl(154, 59%, 51%);
-  opacity: 0.1;
+  opacity: 0.3;
 }
 
 .first-name-error {
